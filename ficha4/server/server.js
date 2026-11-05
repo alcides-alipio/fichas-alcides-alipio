@@ -3,6 +3,8 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+app.use(require("cors")());
+
 const cards = [
   { name: "Dragão de Cobalto", type: "Criatura", attack: 7, defense: 5 },
   { name: "Guardiã das Marés", type: "Criatura", attack: 4, defense: 8 },
@@ -75,7 +77,7 @@ app.get("/agora", (req, res) => {
 const api = express.Router()
 
 api.get("/cards", (req, res) => {
-  res.status(200).send({ ...cards })
+  res.status(200).send([ ...cards ])
 })
 
 app.use("/api", api)
